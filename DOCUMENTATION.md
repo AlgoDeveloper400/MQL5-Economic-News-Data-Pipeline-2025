@@ -10,7 +10,7 @@ This document describes an automated machine learning pipeline for processing, a
 ### 1. Data Scraping and Collection
 **Tools: Selenium, WebDriver, CSV Export**
 
-This initial stage gathers raw data from **MQL5 news sources** using Selenium WebDriver to automate browser interactions for websites that require dynamic content rendering. The scraper extracts relevant information including article headlines, content, publication dates, authors, and metadata. Collected data is exported to CSV files, providing a portable format for subsequent processing. This service runs as a scheduled Docker container triggered monthly.
+This initial stage gathers raw data from **MQL5 news sources** using Selenium WebDriver to automate browser interactions for websites that require dynamic content rendering. The scraper extracts relevant information including economic forecasts, dates and previous values. Collected data is exported to CSV files, providing a portable format for subsequent processing. This service runs as a scheduled Docker container triggered monthly.
 
 **Key Functions:**
 - Scraping news data specifically from **MQL5**
@@ -56,7 +56,7 @@ The machine learning core where models are developed for news analysis tasks suc
 ### 5. Model Serving & Inference
 **Tools: FastAPI, Scikit-learn, PyTorch**
 
-The best-performing model is deployed as a REST API using FastAPI, providing real-time prediction capabilities. The service uses models trained in **Scikit-learn and PyTorch**, and accepts new news articles, returning structured predictions including classification labels and confidence scores.
+The best-performing model is deployed as a REST API using FastAPI, providing real-time prediction capabilities. The service uses models trained in **Scikit-learn and PyTorch**, and accepts new news forecasts, returning structured predictions.
 
 **Deployment Note:** This FastAPI service leverages online notebook platforms with GPU acceleration for high-performance inference and is not containerized in the current deployment cycle.
 
@@ -95,8 +95,4 @@ The entire pipeline is automated and scheduled using Apache Airflow, which manag
 - Database performance optimization
 - Regular updates to data sources and model retraining schedules
 
-## Getting Started
 
-### 1. Environment Setup
-- Create a `.env` file in each service folder to define environment variables (database credentials, API keys, file paths, etc.).
-- Example `.env` variables:
