@@ -121,7 +121,7 @@ This repository serves as a reference architecture and implementation baseline f
 
 ## 🎥 Video Explanation
 
-A full playlist walkthrough explaining this pipeline — including architecture, components, and workflow execution — will be uploaded to **[Big Data Brain (@bdb5905)](https://www.youtube.com/@bdb5905)** on YouTube.
+A full playlist walkthrough explaining this pipeline — including architecture, components, and workflow execution — will be uploaded to **[Big Data Brain (@bdb5905)](https://www.youtube.com/watch?v=TEO_aC3QD90&list=PLnMdLu-_m6HKM7gM4BDHAxfmcQVkAS2Nh)** on YouTube.
 
 Subscribe to the channel to get notified when it goes live and for more content on **Big Data, Machine Learning Pipelines, and Production Systems**.
 
