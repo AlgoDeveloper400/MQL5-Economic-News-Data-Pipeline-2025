@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  data-processor:
+    build: .
+    container_name: mql5-data-processor
+    restart: "no"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MAIN_BATCH_FOLDER=/app/data/main_batch
+      - MONTHLY_BATCH_FOLDER=/app/data/monthly_batch
+      - OUTPUT_FOLDER=/app/data/merged_batch
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+    volumes:
+      # These bind mounts sync live with your Windows folders
+      - "C:/Users/Map/your/own/volume/here/main_batch:/app/data/main_batch"
+      - "C:/Users/Map/your/own/volume/here/monthly_batch:/app/data/monthly_batch"
+      - "C:/Users/Map/your/own/volume/here/merged_batch:/app/data/merged_batch"

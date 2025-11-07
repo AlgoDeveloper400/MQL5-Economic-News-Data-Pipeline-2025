@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.1
+    container_name: mysql_server
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - "C:/Users/Map/your/own/volume/here/mysql_data:/var/lib/mysql"
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+      - "C:/Users/Map/your/own/volume/here/arranged_batch:/csv_data:ro"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  mysql-client:
+    image: mysql:8.1
+    container_name: mysql_client
+    depends_on:
+      mysql:
+        condition: service_healthy
+    entrypoint: ["sleep", "infinity"]
+
+  csv-importer:
+    build: .
+    container_name: csv_importer
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - "C:/Users/Map/your/own/volume/here/arranged_batch:/csv_data:ro"

@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  pyspark-processor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pyspark-data-processor
+    volumes:
+      - "C:/Users/Map/your/own/volume/here/merged_batch:/app/input"
+      - "C:/Users/Map/your/own/volume/here/arranged_batch:/app/output"
+    environment:
+      - SPARK_LOCAL_IP=127.0.0.1
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=python3
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 8G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
+    restart: no

@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  mql5-scraper:
+    build: .
+    container_name: mql5-economic-scraper
+    environment:
+      - DOCKER_MODE=true
+    volumes:
+      - C:/Users/Map/your/own/volume/here/home/scraper/data
