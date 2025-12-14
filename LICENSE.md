@@ -8,4 +8,4 @@ You may **not** copy, modify, distribute, sublicense, or use this code, in whole
 This project may include incomplete or redacted code intended solely for demonstration or personal use.  
 No warranties, express or implied, are provided. Use of this code is at your own risk.
 
-For licensing inquiries, please contact the author directly.
+For licensing inquiries, please contact me directly via Email, YouTube or Linkedin.
