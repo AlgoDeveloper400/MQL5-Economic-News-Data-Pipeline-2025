@@ -1,3 +1,19 @@
+# Problem Statement
+
+Trading strategies that react to economic events need a reliable feed of that news, but economic calendar data isn't something you can just pull from a clean API. Sites like MQL5 publish it as web content that changes layout, has inconsistent formatting, and produces broken or misaligned schemas when scraped naively. Without a proper pipeline, that raw data is unusable for anything downstream, and any model trained on it inherits those errors silently.
+
+This project was built to solve that problem directly. It's an automated pipeline that collects economic news and event data from MQL5, repairs and normalizes it into a consistent schema, and turns it into a structured dataset that can support model training and live prediction. Specifically, it needed to:
+
+- Scrape economic event data from MQL5 on a repeatable, scheduled basis rather than as a one-off pull
+- Detect and fix broken or misaligned schemas so downstream processing doesn't fail or silently corrupt data
+- Process and normalize the data at scale using distributed tooling, then store it in a queryable form
+- Feed the cleaned dataset into an ML lifecycle (training, validation, testing) with full experiment tracking
+- Serve live predictions through an API and dashboard, and keep the whole pipeline running unattended in production
+
+Everything below, from scraping through schema repair, Spark processing, the ML lifecycle, and deployment, is the system built to solve that problem end to end.
+
+---
+
 # 🧠 MQL5 Economic News Data Pipeline 2025
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
